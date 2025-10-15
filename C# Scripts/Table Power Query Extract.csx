@@ -99,15 +99,19 @@ foreach (var table in Model.Tables)
             PQry = table.Partitions[0].Expression;
         }
 
-        if( PQry?.Contains("Sql.Database") == true || PQry?.Contains("PostGProd") == true )
+        if( PQry?.Contains("Sql.Database") == true ) // <-- It will scan for SQL Database connectors, you can update as per connector used
         {
             worksheet.Cells[lastRow, 1].Value = Dataset;
             worksheet.Cells[lastRow, 2].Value = table.Name; // Table Name 
-             
-            worksheet.Cells[lastRow, 3].Value = GrabValue(PQry,  @"Sql\.Database\s*\(\s*([^,\)]+)\s*,\s*([^,\)]+)", 1 );
+
+            //<---- for Source = SQL.Dsatabse("abcd.database.com", "My_DB") ---->
+            worksheet.Cells[lastRow, 3].Value = GrabValue(PQry,  @"Sql\.Database\s*\(\s*([^,\)]+)\s*,\s*([^,\)]+)", 1 ); 
             worksheet.Cells[lastRow, 4].Value = GrabValue(PQry,  @"Sql\.Database\s*\(\s*([^,\)]+)\s*,\s*([^,\)]+)", 2 );
+
+            // <---- for TableData = Source{[Schema="Database Schema",Item="Item Name"]}[Data] ---->
             worksheet.Cells[lastRow, 5].Value = GrabValue(PQry,  @"Schema\s*=\s*(#?""[^""]+""|\w+)\s*,\s*Item\s*=\s*(#?""[^""]+""|\w+)", 1 );
             worksheet.Cells[lastRow, 6].Value = GrabValue(PQry,   @"Schema\s*=\s*(#?""[^""]+""|\w+)\s*,\s*Item\s*=\s*(#?""[^""]+""|\w+)", 2 );
+
             lastRow++;
         
         }
