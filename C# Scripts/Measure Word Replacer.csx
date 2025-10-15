@@ -1,4 +1,4 @@
-string searchKeyword = "[Begin Date when Sign Date Blank]";
+string searchKeyword = "[Initial Date]";
 string replaceWith = "[Join Date]";
 
 // Iterate over selected measures in the model
