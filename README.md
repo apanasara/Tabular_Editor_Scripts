@@ -2,6 +2,7 @@
 
 A curated collection of handy scripts for Power BI automation using Tabular Editor.  
 Boost productivity with ready-to-use C# scripts for modeling, metadata, and more!
+<img width="559" height="370" alt="image" src="https://github.com/user-attachments/assets/ab39c8bb-a37e-407b-ac91-eb9df981ad5c" />
 
 ---
 
